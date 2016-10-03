@@ -96,10 +96,9 @@ public class BeverageMachineTest {
         assertThat(receivedChange, is(expected));
     }
 
-    @Ignore
+
     @Test
     public void increaseCurrentBalanceTest() {
-        machine.increaseCurrentBalance();
         machine.passBanknotes(new Banknote[]{
                 Banknote.ONE,
                 Banknote.FIVE,
@@ -109,7 +108,8 @@ public class BeverageMachineTest {
                 Banknote.TEN,
                 Banknote.ONE,
                 Banknote.TWENTY});
-        Map<Banknote, Integer> map = new HashMap<>();
+        machine.increaseCurrentBalance();
+        Map<Banknote, Integer> map = new TreeMap<>(Collections.reverseOrder());
         map.put(Banknote.ONE, 12);
         map.put(Banknote.TWO, 10);
         map.put(Banknote.FIVE, 12);

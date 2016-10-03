@@ -2,10 +2,10 @@ import java.util.*;
 
 import static java.util.Collections.frequency;
 
-public class BeverageMachine {
-    private Map<Banknote, Integer> banknotes = new HashMap<>();
+public class BeverageMachine implements Machine {
+    private Map<Banknote, Integer> banknotes = new TreeMap<>(Collections.reverseOrder());
     private Map<BeverageType, Integer> drinks = new HashMap<>();
-    private List<Banknote> moneyPutByUser;
+    private List<Banknote> moneyPutByUser = new ArrayList<>();
     private BeverageType chosenDrink;
 
     {
@@ -21,9 +21,10 @@ public class BeverageMachine {
     }
 
 
-    public void passBanknotes(Banknote[] arr) {
+        public void passBanknotes(Banknote[] arr) {
         moneyPutByUser = Arrays.asList(arr);
     }
+
 
     public Set<BeverageType> getBeverageList() {
         return drinks.keySet();
@@ -65,7 +66,7 @@ public class BeverageMachine {
     }
 
     public boolean hasAnyMoneyForChange() {
-        return banknotes.isEmpty();
+        return !banknotes.isEmpty();
     }
 
     public Set<BeverageType> getAvailableBeverageList() {
@@ -112,11 +113,19 @@ public class BeverageMachine {
 
 
     public void increaseCurrentBalance() {
+        Map<Banknote, Integer> customerMoney = countBanknotesRepetitionAsMap(moneyPutByUser);
+        Iterator<Map.Entry<Banknote, Integer>> iter1 = customerMoney.entrySet().iterator();
+        Iterator<Map.Entry<Banknote, Integer>> iter2 = banknotes.entrySet().iterator();
+        while (iter2.hasNext() && iter1.hasNext()) {
+            Map.Entry<Banknote, Integer> entry2 = iter2.next();
+            Map.Entry<Banknote, Integer> entry1 = iter1.next();
+            entry2.setValue(entry2.getValue() + entry1.getValue());
+        }
 
     }
 
     public Map<Banknote, Integer> countBanknotesRepetitionAsMap(List<Banknote> list) {
-        Map<Banknote, Integer> banknoteFrequency = new HashMap<>();
+        Map<Banknote, Integer> banknoteFrequency = new TreeMap<>(Collections.reverseOrder());
         List<Banknote> allBanknotes = Arrays.asList(Banknote.values());
         Iterator<Banknote> iter = allBanknotes.iterator();
         while (iter.hasNext()) {

@@ -9,4 +9,6 @@ public enum Banknote {
     public int getNominal() {
         return nominal;
     }
+
+
 }
