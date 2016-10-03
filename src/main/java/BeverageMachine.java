@@ -3,12 +3,22 @@ import java.util.*;
 import static java.util.Collections.frequency;
 
 public class BeverageMachine implements Machine {
+    /**
+     * Defines the amount of banknotes (Integer) of corresponding nominal (Banknote)
+     */
     private Map<Banknote, Integer> banknotes = new TreeMap<>(Collections.reverseOrder());
+    /**
+     * Defines the amount of beverages (Integer) of corresponding type (BeverageType)
+     */
     private Map<BeverageType, Integer> drinks = new HashMap<>();
+
     private List<Banknote> moneyPutByUser = new ArrayList<>();
+
     private BeverageType chosenDrink;
 
-    {
+    /**
+     * initializes banknotes and drinks map with initial values
+     */ {
         banknotes.put(Banknote.ONE, 10);
         banknotes.put(Banknote.TWO, 10);
         banknotes.put(Banknote.FIVE, 10);
@@ -20,46 +30,40 @@ public class BeverageMachine implements Machine {
         drinks.put(BeverageType.AMERICANO, 10);
     }
 
-
-        public void passBanknotes(Banknote[] arr) {
-        moneyPutByUser = Arrays.asList(arr);
+    /**
+     * adds to the moneyPutByUser collection array of Banknotes
+     *
+     * @param arr Banknote array
+     */
+    public void passBanknotes(Banknote[] arr) {
+        // moneyPutByUser = Arrays.asList(arr);
+        Collections.addAll(moneyPutByUser, arr);
     }
 
-
-    public Set<BeverageType> getBeverageList() {
-        return drinks.keySet();
-    }
-
+    /**
+     * decreases the specific amount of drinks in the map drinks
+     *
+     * @param type BeverageType
+     */
     public void decreaseByOneSelectedDrink(BeverageType type) {
         int amount = drinks.get(type);
         drinks.replace(type, amount, amount - 1);
     }
 
-    public Map<Banknote, Integer> getBanknotes() {
-        return banknotes;
-    }
-
-    public void setBanknotes(Map<Banknote, Integer> banknotes) {
-        this.banknotes = banknotes;
-    }
-
-    public Map<BeverageType, Integer> getDrinks() {
-        return drinks;
-    }
 
     public boolean isNotEmptyAmountOfBeverage(BeverageType type) {
         return drinks.get(type) > 0;
     }
 
+    /**
+     * @return List  <Banknote> put by user.
+     */
     public List<Banknote> getMoneyBack() {
         List<Banknote> temp = moneyPutByUser;
         moneyPutByUser = null;
         return temp;
     }
 
-    public List<Banknote> getMoneyPutByUser() {
-        return moneyPutByUser;
-    }
 
     public int getTotalMoneyPut() {
         return moneyPutByUser.stream().mapToInt(i -> i.getNominal()).sum();
@@ -69,6 +73,10 @@ public class BeverageMachine implements Machine {
         return !banknotes.isEmpty();
     }
 
+    /**
+     *
+     * @return Set<BeverageType> from drinks map with the amount>0
+     */
     public Set<BeverageType> getAvailableBeverageList() {
         Set<BeverageType> available = new LinkedHashSet<>();
         Iterator<Map.Entry<BeverageType, Integer>> iter = drinks.entrySet().iterator();
@@ -87,6 +95,11 @@ public class BeverageMachine implements Machine {
 
     public BeverageType getChosenDrink() {
         return chosenDrink;
+    }
+
+    @Override
+    public int getBeveragePrice() {
+        return chosenDrink.getPrice();
     }
 
     public void setChosenDrink(BeverageType chosenDrink) {
@@ -134,5 +147,25 @@ public class BeverageMachine implements Machine {
             banknoteFrequency.put(item, count);
         }
         return banknoteFrequency;
+    }
+
+    public Set<BeverageType> getBeverageList() {
+        return drinks.keySet();
+    }
+
+    public Map<Banknote, Integer> getBanknotes() {
+        return banknotes;
+    }
+
+    public void setBanknotes(Map<Banknote, Integer> banknotes) {
+        this.banknotes = banknotes;
+    }
+
+    public Map<BeverageType, Integer> getDrinks() {
+        return drinks;
+    }
+
+    public List<Banknote> getMoneyPutByUser() {
+        return moneyPutByUser;
     }
 }

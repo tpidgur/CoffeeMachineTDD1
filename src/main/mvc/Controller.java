@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Controller {
     Machine machine;
@@ -16,10 +17,7 @@ public class Controller {
         view.printMessage(View.AVAILABLE_BEVERAGES + machine.getAvailableBeverageList());
         machine.passBanknotes(putMoneyInCoffeeMachine());
         view.printMessage(View.INPUT_CURRENCY + machine.getMoneyPutByUser());
-
-
-//        putMoneyInCoffeeMachine();
-//        int beverageId = inputDrinkIdWithScanner();
+        int beverageId = inputDrinkIdWithScanner();
 //        giveBeverage(banknotes, beverageId);
     }
 
@@ -30,6 +28,24 @@ public class Controller {
             sc.next();
         }
         return sc.nextInt();
+    }
+
+    public int inputDrinkIdWithScanner() {
+        while (true) {
+            int res = inputIntWithScanner(View.SELECT_BEVERAGE + machine.getAvailableBeverageList());
+            Optional containsValue = EnumSet.allOf(BeverageType.class).stream().filter(e -> e.ordinal() == res).findAny();
+            if (containsValue.isPresent()) {
+                if (machine.getTotalMoneyPut() - machine.getBeveragePrice() >= 0) {
+                    machine.setChosenDrink((BeverageType) containsValue.get());
+                    view.printMessage(view.CHOSEN_BEVERAGE_TYPE + machine.getChosenDrink());
+                    return res;
+                } else {
+                    view.printMessage(view.NOT_ENOUGH_MONEY);
+                }
+            } else {
+                view.printMessage(view.WRONG_INPUT);
+            }
+        }
     }
 
     public Banknote[] putMoneyInCoffeeMachine() {
@@ -45,7 +61,7 @@ public class Controller {
                 default://put money
                     Optional containsValue = EnumSet.allOf(Banknote.class).stream().filter(e -> e.getNominal() == res).findAny();
                     if (containsValue.isPresent()) {
-                       banknotes.add((Banknote) containsValue.get());
+                        banknotes.add((Banknote) containsValue.get());
                     } else {
                         view.printMessage(view.WRONG_INPUT);
                     }
