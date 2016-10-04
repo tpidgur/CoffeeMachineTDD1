@@ -52,7 +52,8 @@ public class BeverageMachineTest {
     @Test
     public void decreaseByOneSelectedDrinkTest() {
         int amount1 = machine.getDrinks().get(BeverageType.AMERICANO);
-        machine.decreaseByOneSelectedDrink(BeverageType.AMERICANO);
+        machine.setChosenDrink(BeverageType.AMERICANO);
+        machine.decreaseByOneSelectedDrink();
         int amount2 = machine.getDrinks().get(BeverageType.AMERICANO);
         assertThat(amount1 - amount2, is(1));
     }

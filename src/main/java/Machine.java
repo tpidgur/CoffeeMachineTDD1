@@ -27,5 +27,5 @@ public interface Machine {
     public BeverageType getChosenDrink();
 
     public int getBeveragePrice();
-
+    public List<Integer> getDrinkAndChangeTransaction();
 }

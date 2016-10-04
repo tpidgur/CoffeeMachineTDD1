@@ -16,8 +16,8 @@ public class Controller {
         view.printMessage(View.AVAILABLE_BEVERAGES + machine.getAvailableBeverageList());
         machine.passBanknotes(putMoneyInCoffeeMachine());
         view.printMessage(View.INPUT_CURRENCY + machine.getBanknoteListPutByUser());
-        int beverageId = inputDrinkIdWithScanner();
-        view.printMessage(View.CHANGE + machine.getBanknoteListChange());
+        inputDrinkIdWithScanner();
+        view.printMessage(View.CHANGE +  machine.getDrinkAndChangeTransaction());
     }
 
     public int inputIntWithScanner(String message) {
@@ -55,6 +55,7 @@ public class Controller {
             int res = inputIntWithScanner(view.PUT_MONEY);
             switch (res) {
                 case -1://discard
+                    view.printMessage(view.RETURN + machine.getMoneyBack());
                     System.exit(0);
                 case 0://exit from putting money
                     Banknote[] b = new Banknote[banknotes.size()];

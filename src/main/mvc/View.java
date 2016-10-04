@@ -14,7 +14,7 @@ public class View {
     public static final String NOT_ENOUGH_MONEY = "Not enough money! \n";
     public static final String CHOSEN_BEVERAGE_TYPE = "The chosen drink is: ";
     public static final String CHANGE = "Get banknote nominal: \n";
-
+    public static final String RETURN = "Return money back to user: \n";
 
     public void printMessage(String message) {
         System.out.println(message);

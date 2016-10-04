@@ -36,18 +36,22 @@ public class BeverageMachine implements Machine {
      * @param arr Banknote array
      */
     public void passBanknotes(Banknote[] arr) {
-        // moneyPutByUser = Arrays.asList(arr);
         Collections.addAll(moneyPutByUser, arr);
+    }
+
+    public List<Integer> getDrinkAndChangeTransaction() {
+        decreaseByOneSelectedDrink();
+        List<Integer> change=   getBanknoteListChange();
+        increaseCurrentBalance();
+        return change;
     }
 
     /**
      * decreases the specific amount of drinks in the map drinks
-     *
-     * @param type BeverageType
      */
-    public void decreaseByOneSelectedDrink(BeverageType type) {
-        int amount = drinks.get(type);
-        drinks.replace(type, amount, amount - 1);
+    public void decreaseByOneSelectedDrink() {
+        int amount = drinks.get(chosenDrink);
+        drinks.replace(chosenDrink, amount, amount - 1);
     }
 
 
@@ -74,7 +78,6 @@ public class BeverageMachine implements Machine {
     }
 
     /**
-     *
      * @return Set<BeverageType> from drinks map with the amount>0
      */
     public Set<BeverageType> getAvailableBeverageList() {
@@ -104,7 +107,7 @@ public class BeverageMachine implements Machine {
 
     @Override
     public boolean isEnoughMoney(BeverageType beverageType) {
-        return getTotalMoneyPut()-beverageType.getPrice()>=0;
+        return getTotalMoneyPut() - beverageType.getPrice() >= 0;
     }
 
     public void setChosenDrink(BeverageType chosenDrink) {
