@@ -102,11 +102,16 @@ public class BeverageMachine implements Machine {
         return chosenDrink.getPrice();
     }
 
+    @Override
+    public boolean isEnoughMoney(BeverageType beverageType) {
+        return getTotalMoneyPut()-beverageType.getPrice()>=0;
+    }
+
     public void setChosenDrink(BeverageType chosenDrink) {
         this.chosenDrink = chosenDrink;
     }
 
-    public List<Integer> getChange() {
+    public List<Integer> getBanknoteListChange() {
         int requiredChange = calculateChange();
         Iterator<Map.Entry<Banknote, Integer>> iter = banknotes.entrySet().iterator();
         List<Integer> change = new LinkedList<>();
@@ -165,7 +170,7 @@ public class BeverageMachine implements Machine {
         return drinks;
     }
 
-    public List<Banknote> getMoneyPutByUser() {
+    public List<Banknote> getBanknoteListPutByUser() {
         return moneyPutByUser;
     }
 }

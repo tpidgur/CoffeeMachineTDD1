@@ -10,14 +10,10 @@ public class View {
             " 0 in order to choose the drink or -1 " +
             "if you want to discard an order. \n";
     public static final String INPUT_CURRENCY = "You've put the currency: ";
-    public static final String CURRENT_INPUT = "Your current balance is: ";
 
-    public static final String NOT_ENOUGH_MONEY = "Not enough money! Please select another drink\n";
-    public static final String SUCCESS = " is being prepared...\n";
+    public static final String NOT_ENOUGH_MONEY = "Not enough money! \n";
     public static final String CHOSEN_BEVERAGE_TYPE = "The chosen drink is: ";
-    public static final String REQUIRED_CHANGE = "\nRequired change is: \n";
     public static final String CHANGE = "Get banknote nominal: \n";
-    public static final String TOTAL_CHANGE = "The total change makes up: \n";
 
 
     public void printMessage(String message) {

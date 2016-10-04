@@ -1,6 +1,5 @@
 import org.junit.Before;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -22,7 +21,7 @@ public class BeverageMachineTest {
     public void passBanknoteTest() {
         Banknote[] arr = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
         machine.passBanknotes(arr);
-        List<Banknote> userMoney = machine.getMoneyPutByUser();
+        List<Banknote> userMoney = machine.getBanknoteListPutByUser();
         assertThat(userMoney, is(Arrays.asList(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN})));
     }
 
@@ -91,7 +90,7 @@ public class BeverageMachineTest {
     public void getChangeTest() {
         machine.passBanknotes(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
         machine.setChosenDrink(BeverageType.AMERICANO);
-        List<Integer> receivedChange = machine.getChange();
+        List<Integer> receivedChange = machine.getBanknoteListChange();
         List<Integer> expected = Arrays.asList(20, 20, 5);
         assertThat(receivedChange, is(expected));
     }

@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class Controller {
     Machine machine;
@@ -16,9 +15,9 @@ public class Controller {
     public void processUser() {
         view.printMessage(View.AVAILABLE_BEVERAGES + machine.getAvailableBeverageList());
         machine.passBanknotes(putMoneyInCoffeeMachine());
-        view.printMessage(View.INPUT_CURRENCY + machine.getMoneyPutByUser());
+        view.printMessage(View.INPUT_CURRENCY + machine.getBanknoteListPutByUser());
         int beverageId = inputDrinkIdWithScanner();
-//        giveBeverage(banknotes, beverageId);
+        view.printMessage(View.CHANGE + machine.getBanknoteListChange());
     }
 
     public int inputIntWithScanner(String message) {
@@ -35,12 +34,14 @@ public class Controller {
             int res = inputIntWithScanner(View.SELECT_BEVERAGE + machine.getAvailableBeverageList());
             Optional containsValue = EnumSet.allOf(BeverageType.class).stream().filter(e -> e.ordinal() == res).findAny();
             if (containsValue.isPresent()) {
-                if (machine.getTotalMoneyPut() - machine.getBeveragePrice() >= 0) {
-                    machine.setChosenDrink((BeverageType) containsValue.get());
+               BeverageType beverage=(BeverageType) containsValue.get();
+                if ( machine.isEnoughMoney(beverage)) {
+                    machine.setChosenDrink(beverage);
                     view.printMessage(view.CHOSEN_BEVERAGE_TYPE + machine.getChosenDrink());
                     return res;
                 } else {
                     view.printMessage(view.NOT_ENOUGH_MONEY);
+                    machine.passBanknotes(putMoneyInCoffeeMachine());
                 }
             } else {
                 view.printMessage(view.WRONG_INPUT);
@@ -68,4 +69,6 @@ public class Controller {
             }
         }
     }
+
+
 }

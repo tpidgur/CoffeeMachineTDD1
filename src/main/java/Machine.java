@@ -11,19 +11,21 @@ public interface Machine {
 
     public int getTotalMoneyPut();
 
-    public List<Banknote> getMoneyPutByUser();
+    public List<Banknote> getBanknoteListPutByUser();
 
     public Set<BeverageType> getAvailableBeverageList();
 
     public int calculateChange();
 
-    public List<Integer> getChange();
+    public List<Integer> getBanknoteListChange();
 
-    public void increaseCurrentBalance();
+
+    boolean isEnoughMoney(BeverageType beverageType);
 
     public void setChosenDrink(BeverageType chosenDrink);
 
     public BeverageType getChosenDrink();
 
     public int getBeveragePrice();
+
 }
