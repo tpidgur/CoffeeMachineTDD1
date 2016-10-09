@@ -27,7 +27,7 @@ public class BeverageMachineTest {
         Banknote[] arr = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
         machine.passBanknotes(arr);
         List<Banknote> userMoney = machine.getBanknoteListPutByUser();
-        assertThat(userMoney, is(Arrays.asList(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN})));
+        assertThat(userMoney, is(Arrays.asList(Banknote.FIFTY, Banknote.FIVE, Banknote.TEN)));
     }
 
     @Test
