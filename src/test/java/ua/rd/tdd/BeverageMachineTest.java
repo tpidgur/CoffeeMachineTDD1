@@ -21,19 +21,20 @@ public class BeverageMachineTest {
         machine = new BeverageMachine();
     }
 
+    private Banknote[] getBanknotesArray() {
+        return new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
+    }
 
     @Test
     public void passBanknoteTest() {
-        Banknote[] banknotes = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
-        machine.pass(banknotes);
+        machine.pass(getBanknotesArray());
         List<Banknote> userMoney = machine.getBanknoteListPutByUser();
         assertThat(userMoney, is(Arrays.asList(Banknote.FIFTY, Banknote.FIVE, Banknote.TEN)));
     }
 
     @Test
     public void getTotalMoneyPutTest() {
-        Banknote[] banknotes = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
-        machine.pass(banknotes);
+        machine.pass(getBanknotesArray());
         int sum = machine.getTotalMoneyPut();
         assertThat(sum, is(65));
     }
@@ -71,7 +72,7 @@ public class BeverageMachineTest {
 
     @Test
     public void getMoneyBackTest() {
-        machine.pass(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        machine.pass(getBanknotesArray());
         List<Banknote> list = machine.getMoneyBack();
         List<Banknote> expected = Arrays.asList(Banknote.FIFTY, Banknote.FIVE, Banknote.TEN);
         assertThat(list, is(expected));
@@ -86,7 +87,7 @@ public class BeverageMachineTest {
 
     @Test
     public void calculateChangeTest() {
-        machine.pass(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        machine.pass(getBanknotesArray());
         machine.setChosenDrink(BeverageType.AMERICANO);
         int actual = machine.calculateChange();
         assertThat(actual, is(45));
@@ -94,7 +95,7 @@ public class BeverageMachineTest {
 
     @Test
     public void getChangeTest() {
-        machine.pass(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        machine.pass(getBanknotesArray());
         machine.setChosenDrink(BeverageType.AMERICANO);
         List<Integer> receivedChange = machine.getBanknoteListChange();
         List<Integer> expected = Arrays.asList(20, 20, 5);
