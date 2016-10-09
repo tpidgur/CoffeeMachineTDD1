@@ -16,9 +16,9 @@ public class BeverageMachine implements Machine {
 
     private BeverageType chosenDrink;
 
-    /**
+     /**
      * initializes banknotes and drinks map with initial values
-     */ {
+     */public void init() {
         banknotes.put(Banknote.ONE, 10);
         banknotes.put(Banknote.TWO, 10);
         banknotes.put(Banknote.FIVE, 10);
@@ -41,7 +41,7 @@ public class BeverageMachine implements Machine {
 
     public List<Integer> getDrinkAndChangeTransaction() {
         decreaseByOneSelectedDrink();
-        List<Integer> change=   getBanknoteListChange();
+        List<Integer> change = getBanknoteListChange();
         increaseCurrentBalance();
         return change;
     }

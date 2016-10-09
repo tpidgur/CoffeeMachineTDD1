@@ -19,6 +19,7 @@ public class BeverageMachineTest {
     @Before
     public void createBeverageMachineInstance() {
         machine = new BeverageMachine();
+        machine.init();
     }
 
     private Banknote[] getBanknotesArray() {
