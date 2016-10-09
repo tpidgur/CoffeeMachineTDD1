@@ -1,3 +1,5 @@
+package ua.rd.tdd.entities;
+
 /**
  * Beverage enum and corresponding prices
  */

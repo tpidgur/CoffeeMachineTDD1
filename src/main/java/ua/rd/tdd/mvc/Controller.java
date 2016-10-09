@@ -1,3 +1,9 @@
+package ua.rd.tdd.mvc;
+
+import ua.rd.tdd.entities.Banknote;
+import ua.rd.tdd.entities.BeverageType;
+import ua.rd.tdd.entities.Machine;
+
 import java.util.*;
 
 public class Controller {

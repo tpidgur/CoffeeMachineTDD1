@@ -1,3 +1,5 @@
+package ua.rd.tdd.entities;
+
 /**
  * Enum with nominal of banknote (String and int representation)
  */

@@ -1,3 +1,5 @@
+package ua.rd.tdd.entities;
+
 import java.util.List;
 import java.util.Set;
 

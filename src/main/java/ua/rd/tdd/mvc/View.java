@@ -1,3 +1,5 @@
+package ua.rd.tdd.mvc;
+
 public class View {
     public static final String SELECT_BEVERAGE = "\nSelect beverage from a list (enter the id number of the beverage):\n";
 

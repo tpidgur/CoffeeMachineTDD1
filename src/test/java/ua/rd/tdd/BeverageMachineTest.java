@@ -1,6 +1,11 @@
+package ua.rd.tdd;
+
 import org.junit.Before;
 
 import org.junit.Test;
+import ua.rd.tdd.entities.Banknote;
+import ua.rd.tdd.entities.BeverageMachine;
+import ua.rd.tdd.entities.BeverageType;
 
 
 import java.util.*;

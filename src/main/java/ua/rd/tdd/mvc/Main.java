@@ -1,3 +1,7 @@
+package ua.rd.tdd.mvc;
+
+import ua.rd.tdd.entities.BeverageMachine;
+
 public class Main {
     public static void main(String[] args) {
         // Initialization

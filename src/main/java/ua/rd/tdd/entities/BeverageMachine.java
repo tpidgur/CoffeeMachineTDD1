@@ -1,14 +1,14 @@
-import java.util.*;
+package ua.rd.tdd.entities;
 
-import static java.util.Collections.frequency;
+import java.util.*;
 
 public class BeverageMachine implements Machine {
     /**
-     * Defines the amount of banknotes (Integer) of corresponding nominal (Banknote)
+     * Defines the amount of banknotes (Integer) of corresponding nominal (ua.rd.tdd.entities.Banknote)
      */
     private Map<Banknote, Integer> banknotes = new TreeMap<>(Collections.reverseOrder());
     /**
-     * Defines the amount of beverages (Integer) of corresponding type (BeverageType)
+     * Defines the amount of beverages (Integer) of corresponding type (ua.rd.tdd.entities.BeverageType)
      */
     private Map<BeverageType, Integer> drinks = new HashMap<>();
 
@@ -33,7 +33,7 @@ public class BeverageMachine implements Machine {
     /**
      * adds to the moneyPutByUser collection array of Banknotes
      *
-     * @param arr Banknote array
+     * @param arr ua.rd.tdd.entities.Banknote array
      */
     public void passBanknotes(Banknote[] arr) {
         Collections.addAll(moneyPutByUser, arr);
@@ -60,7 +60,7 @@ public class BeverageMachine implements Machine {
     }
 
     /**
-     * @return List  <Banknote> put by user.
+     * @return List  <ua.rd.tdd.entities.Banknote> put by user.
      */
     public List<Banknote> getMoneyBack() {
         List<Banknote> temp = moneyPutByUser;
@@ -78,7 +78,7 @@ public class BeverageMachine implements Machine {
     }
 
     /**
-     * @return Set<BeverageType> from drinks map with the amount>0
+     * @return Set<ua.rd.tdd.entities.BeverageType> from drinks map with the amount>0
      */
     public Set<BeverageType> getAvailableBeverageList() {
         Set<BeverageType> available = new LinkedHashSet<>();
