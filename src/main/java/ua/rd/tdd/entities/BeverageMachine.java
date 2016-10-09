@@ -35,7 +35,7 @@ public class BeverageMachine implements Machine {
      *
      * @param arr ua.rd.tdd.entities.Banknote array
      */
-    public void passBanknotes(Banknote[] arr) {
+    public void pass(Banknote[] arr) {
         Collections.addAll(moneyPutByUser, arr);
     }
 

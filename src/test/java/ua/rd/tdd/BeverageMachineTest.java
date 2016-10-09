@@ -24,16 +24,16 @@ public class BeverageMachineTest {
 
     @Test
     public void passBanknoteTest() {
-        Banknote[] arr = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
-        machine.passBanknotes(arr);
+        Banknote[] banknotes = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
+        machine.pass(banknotes);
         List<Banknote> userMoney = machine.getBanknoteListPutByUser();
         assertThat(userMoney, is(Arrays.asList(Banknote.FIFTY, Banknote.FIVE, Banknote.TEN)));
     }
 
     @Test
     public void getTotalMoneyPutTest() {
-        Banknote[] arr = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
-        machine.passBanknotes(arr);
+        Banknote[] banknotes = new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN};
+        machine.pass(banknotes);
         int sum = machine.getTotalMoneyPut();
         assertThat(sum, is(65));
     }
@@ -71,7 +71,7 @@ public class BeverageMachineTest {
 
     @Test
     public void getMoneyBackTest() {
-        machine.passBanknotes(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        machine.pass(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
         List<Banknote> list = machine.getMoneyBack();
         List<Banknote> expected = Arrays.asList(Banknote.FIFTY, Banknote.FIVE, Banknote.TEN);
         assertThat(list, is(expected));
@@ -86,7 +86,7 @@ public class BeverageMachineTest {
 
     @Test
     public void calculateChangeTest() {
-        machine.passBanknotes(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        machine.pass(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
         machine.setChosenDrink(BeverageType.AMERICANO);
         int actual = machine.calculateChange();
         assertThat(actual, is(45));
@@ -94,7 +94,7 @@ public class BeverageMachineTest {
 
     @Test
     public void getChangeTest() {
-        machine.passBanknotes(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        machine.pass(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
         machine.setChosenDrink(BeverageType.AMERICANO);
         List<Integer> receivedChange = machine.getBanknoteListChange();
         List<Integer> expected = Arrays.asList(20, 20, 5);
@@ -104,7 +104,7 @@ public class BeverageMachineTest {
 
     @Test
     public void increaseCurrentBalanceTest() {
-        machine.passBanknotes(new Banknote[]{
+        machine.pass(new Banknote[]{
                 Banknote.ONE,
                 Banknote.FIVE,
                 Banknote.FIVE,

@@ -20,7 +20,7 @@ public class Controller {
 
     public void processUser() {
         view.printMessage(View.AVAILABLE_BEVERAGES + machine.getAvailableBeverageList());
-        machine.passBanknotes(putMoneyInCoffeeMachine());
+        machine.pass(putMoneyInCoffeeMachine());
         view.printMessage(View.INPUT_CURRENCY + machine.getBanknoteListPutByUser());
         inputDrinkIdWithScanner();
         view.printMessage(View.CHANGE +  machine.getDrinkAndChangeTransaction());
@@ -47,7 +47,7 @@ public class Controller {
                     return res;
                 } else {
                     view.printMessage(view.NOT_ENOUGH_MONEY);
-                    machine.passBanknotes(putMoneyInCoffeeMachine());
+                    machine.pass(putMoneyInCoffeeMachine());
                 }
             } else {
                 view.printMessage(view.WRONG_INPUT);

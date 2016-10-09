@@ -7,7 +7,7 @@ import java.util.Set;
  * defines basic operations of the machine
  */
 public interface Machine {
-    public void passBanknotes(Banknote[] arr);
+    public void pass(Banknote[] arr);
 
     public List<Banknote> getMoneyBack();
 
