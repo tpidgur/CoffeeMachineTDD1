@@ -73,7 +73,7 @@ public class BeverageMachineTest {
     public void getMoneyBackTest() {
         machine.passBanknotes(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
         List<Banknote> list = machine.getMoneyBack();
-        List<Banknote> expected = Arrays.asList(new Banknote[]{Banknote.FIFTY, Banknote.FIVE, Banknote.TEN});
+        List<Banknote> expected = Arrays.asList(Banknote.FIFTY, Banknote.FIVE, Banknote.TEN);
         assertThat(list, is(expected));
     }
 
@@ -126,7 +126,7 @@ public class BeverageMachineTest {
 
     @Test
     public void countBanknotesRepetitionAsMapTest() {
-        List<Banknote> list = Arrays.asList(new Banknote[]{
+        List<Banknote> list = Arrays.asList(
                 Banknote.ONE,
                 Banknote.FIVE,
                 Banknote.FIVE,
@@ -134,7 +134,7 @@ public class BeverageMachineTest {
                 Banknote.TEN,
                 Banknote.TEN,
                 Banknote.ONE,
-                Banknote.TWENTY});
+                Banknote.TWENTY);
         Map<Banknote, Integer> banknoteFrequency = machine.countBanknotesRepetitionAsMap(list);
         Map<Banknote, Integer> map = new HashMap<>();
         map.put(Banknote.ONE, 2);
