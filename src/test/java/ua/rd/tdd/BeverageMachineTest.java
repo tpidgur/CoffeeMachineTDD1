@@ -79,8 +79,8 @@ public class BeverageMachineTest {
     }
 
     @Test
-    public void hasAnyMoneyForChangeTest() {
-        boolean hasChange = machine.hasAnyMoneyForChange();
+    public void hasMachineBanknotesForChangeTest() {
+        boolean hasChange = machine.hasMachineBanknotesForChange();
         assertThat(hasChange, is(true));
     }
 

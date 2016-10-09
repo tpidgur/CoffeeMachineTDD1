@@ -73,7 +73,7 @@ public class BeverageMachine implements Machine {
         return moneyPutByUser.stream().mapToInt(i -> i.getNominal()).sum();
     }
 
-    public boolean hasAnyMoneyForChange() {
+    public boolean hasMachineBanknotesForChange() {
         return !banknotes.isEmpty();
     }
 
